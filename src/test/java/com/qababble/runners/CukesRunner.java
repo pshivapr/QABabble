@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 /*
- * Test execution class for Contacts API features 
+ * Test execution class for Demo features 
  */
 	@RunWith(Cucumber.class)
 	@CucumberOptions(
@@ -15,29 +15,11 @@ import cucumber.api.junit.Cucumber;
 					   "junit:target/reports/cucumber-results.xml",
 					   "pretty:target/reports/cucumber-pretty.txt"},
 			features = {"src/test/resources/features/"},
-	//		tags = {"@cS1, @cS4, @cS7, @cS10", "~@ignore"},
-			//tags = {"@LeaveRequests", "~@ignore"},
+			//tags = {"@Homepage", "@Loginpage", "~@ignore"},
 				
-			glue = {"scenarios", "com.arm.steps"}
+			glue = {"scenarios", "com.qababble.steps"}
 			)
 	
 	public class CukesRunner {
-	//	public static Logger log = Logger.getLogger(CucumberRunner.class.getName());	
-		//public static Selenium page = new Selenium();
-		//public static EnvironmentProperties env = new EnvironmentProperties();
-		
-		/*@Before
-		public void i_launch_fiori_launchpad_url() throws Exception {
-			page.Browser(env.setBrowser());
-			page.MaxBrowser();
-			page.Speed(5);
-			page.URL(env.setBaseURL());
-			page.ClickText("Cancel");
-		}
-		
-		@After
-		public void quit() throws Exception {
-			page.Quit();
-		}*/
 		
     }

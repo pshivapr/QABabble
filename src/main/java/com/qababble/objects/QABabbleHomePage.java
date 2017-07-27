@@ -9,10 +9,16 @@ public class QABabbleHomePage {
 
 	private static Selenium page=new Selenium();
 	public String qababble = "https://www.meetup.com/";
+	private EnvironmentProperties env = new EnvironmentProperties();
 	
 	@Step
 	public void setup() throws Exception {
-		page.GridLauncher("http://localhost:5555/wd/hub", "chrome", qababble);
+		env.setParam("node", "http://localhost:5555/wd/hub");
+		env.setParam("browser", "chrome");
+		env.setParam("baseUrl", qababble);
+		env.setParam("version", "59");
+		env.setParam("platform", "Windows");
+		page.GridLauncher(env.getParam("node"), env.getParam("browser"), env.getParam("baseUrl"));
 	}
 	
 	@Step

@@ -14,10 +14,10 @@ public class QABabbleHomePage {
 	@Step
 	public void setup() throws Exception {
 		env.setParam("node", "http://localhost:5555/wd/hub");
-		env.setParam("browser", "firefox");
+		env.setParam("browser", "chrome");
 		env.setParam("baseUrl", qababble);
-		env.setParam("version", "54");
-		env.setParam("platform", "WINDOWS");
+		env.setParam("version", "11");
+		env.setParam("platform", "Windows 7");
 		page.RemoteLauncher(env.getParam("node"), env.getParam("browser"), env.getParam("version"), env.getParam("platform"), env.getParam("baseUrl"));
 	}
 	

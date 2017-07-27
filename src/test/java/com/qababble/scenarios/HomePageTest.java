@@ -2,6 +2,7 @@ package com.qababble.scenarios;
 
 import java.lang.reflect.Method;
 
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import com.codesp.framework.Selenium;
@@ -26,6 +27,7 @@ public class HomePageTest {
 	
 	@Test
 	public void create_meetup() throws Exception {
+		page.WaitForElement(30, "@Create a Meetup");
 		page.ClickText("Create a Meetup");
 		page.Assert("title", "Start a Meetup Today!");
 		qababble.assertTest(testName, "meetupBody");		
@@ -33,6 +35,7 @@ public class HomePageTest {
 	
 	@Test
 	public void get_app() throws Exception {
+		page.WaitForElement(30, "@Get the app");
 		page.ClickText("Get the app");
 		page.Assert("title", "Meet the new Meetup | Meetup");
 		qababble.assertTest(testName, "meetupBody");	
@@ -40,14 +43,21 @@ public class HomePageTest {
 	
 	@Test
 	public void sign_up() throws Exception {
+		page.WaitForElement(30, "@Sign up");
 		page.ClickText("Sign up");
 		page.WaitForElement("@class=view view--modalSnap");
 		qababble.assertTest(testName, "@class=view view--modalSnap");	
 	}
 	
 	@AfterMethod
-	public void testSetup() throws Exception {
-		page.URL(qababble.qababble);
+	public void testSetup(ITestResult result) throws Exception {
+	    if (result.getStatus() == ITestResult.FAILURE) {
+	    	System.out.println(System.lineSeparator()+result.getName()+" -- FAILED!");
+	    	page.takeScreenshot(result.getName()+"_FAILED_"+page.utils().getCurrentDateTime("HH_mm_ss"));
+	    	qababble.screenCapture();
+	    } else {
+	    page.URL(qababble.qababble);
+	    }
 	}
 	
 	@AfterClass

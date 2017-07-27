@@ -12,7 +12,7 @@ public class QABabbleHomePage {
 	
 	@Step
 	public void setup() throws Exception {
-		page.GridLauncher("http://10.4.5.41:5555/wd/hub", "chrome", qababble);
+		page.GridLauncher("http://localhost:5555/wd/hub", "chrome", qababble);
 	}
 	
 	@Step

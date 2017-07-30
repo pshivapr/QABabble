@@ -15,7 +15,7 @@ public class HomePageTest {
 	String testName;
 	
     @BeforeMethod
-	public void printMethodName(Method method) {
+	public void printMethodName(Method method) throws Exception {
 		testName = method.getName();
 		System.out.println(System.lineSeparator()+"***Running TestCase: "+testName);
 	}
@@ -57,8 +57,10 @@ public class HomePageTest {
 	    	System.out.println(System.lineSeparator()+result.getName()+" -- FAILED!");
 	    	page.takeScreenshot(result.getName()+"_FAILED_"+page.utils().getCurrentDateTime("HH_mm_ss"));
 	    	qababble.screenCapture();
-	    } else {
+	    } try {
 	    page.URL(qababble.qababble);
+	    } catch (AssertionError e) {
+	    	
 	    }
 	}
 	

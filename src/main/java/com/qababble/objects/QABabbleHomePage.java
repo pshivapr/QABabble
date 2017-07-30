@@ -16,10 +16,10 @@ public class QABabbleHomePage {
 		env.setParam("node", "http://localhost:5555/wd/hub");
 		env.setParam("browser", "chrome");
 		env.setParam("baseUrl", qababble);
-		env.setParam("version", "11");
+		env.setParam("version", "60");
 		env.setParam("platform", "Windows 7");
 		page.RemoteLauncher(env.getParam("node"), env.getParam("browser"), env.getParam("version"), env.getParam("platform"), env.getParam("baseUrl"));
-		//page.LaunchBrowserWithURL("internet explorer", qababble);
+		//page.LaunchBrowserWithURL("chrome", qababble);
 	}
 	
 	@Step

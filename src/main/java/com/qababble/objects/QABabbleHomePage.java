@@ -59,6 +59,7 @@ public class QABabbleHomePage {
 	
 	@Step
 	public void assert_login_pass(String type) throws Exception {
+		page.WaitForElement(10, "profileNav");
 		page.Assert("element", "profileNav");
 		page.Assert("element", "findNavBar");
 		assertTest(type+".txt", "findNavBar");

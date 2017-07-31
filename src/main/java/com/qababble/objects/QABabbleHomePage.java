@@ -19,6 +19,7 @@ public class QABabbleHomePage {
 		env.setParam("version", "11");
 		env.setParam("platform", "Windows 7");
 		page.RemoteLauncher(env.getParam("node"), env.getParam("browser"), env.getParam("version"), env.getParam("platform"), env.getParam("baseUrl"));
+		//page.LaunchBrowserWithURL("internet explorer", qababble);
 	}
 	
 	@Step

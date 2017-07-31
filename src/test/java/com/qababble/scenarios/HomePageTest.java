@@ -29,6 +29,7 @@ public class HomePageTest {
 	public void create_meetup() throws Exception {
 		page.WaitForElement(30, "@Create a Meetup");
 		page.ClickText("Create a Meetup");
+		page.WaitForPageToLoad(10);
 		page.Assert("title", "Start a Meetup Today!");
 		qababble.assertTest(testName, "meetupBody");		
 	}
@@ -37,6 +38,7 @@ public class HomePageTest {
 	public void get_app() throws Exception {
 		page.WaitForElement(30, "@Get the app");
 		page.ClickText("Get the app");
+		page.WaitForPageToLoad(10);
 		page.Assert("title", "Meet the new Meetup | Meetup");
 		qababble.assertTest(testName, "meetupBody");	
 	}
@@ -45,7 +47,7 @@ public class HomePageTest {
 	public void sign_up() throws Exception {
 		page.WaitForElement(30, "@Sign up");
 		page.ClickText("Sign up");
-		page.WaitForElement("@class=view view--modalSnap");
+		page.WaitForElement(10, "@class=view view--modalSnap");
 		qababble.assertTest(testName, "@class=view view--modalSnap");	
 	}
 	

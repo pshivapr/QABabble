@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/DECORATION/1.6.0"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0
+         http://maven.apache.org/xsd/decoration-1.6.0.xsd">
+    <bannerLeft>
+        <name>${project.name}</name>
+        <href>${project.url}</href>
+    </bannerLeft>
+ 
+    <publishDate position="right" format="MMMM dd, yyyy"/>
+    <version/>
+    <poweredBy>
+        <logo img="#" alt=""/>
+    </poweredBy>
+ 
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.5</version>
+    </skin>
+ 
+     <custom>
+      <fluidoSkin>
+        <topBarEnabled>true</topBarEnabled>
+        <topBarContainerStyle>width: 90%;</topBarContainerStyle>
+        <topBarIcon>
+          <name>Project Info</name>
+          <alt>Project Info</alt>
+          <src>/resources/images/meetup.PNG</src>
+          <href>/index.html</href>
+        </topBarIcon>
+        <sideBarEnabled>false</sideBarEnabled>
+        <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+      </fluidoSkin>
+    </custom>
+    <body>
+        <menu ref="reports"/>
+        <footer/>
+    </body>
+</project>

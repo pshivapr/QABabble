@@ -41,6 +41,7 @@ public class LoginSearchTest {
 	
 	@Test (priority=3)
 	public void logout() throws Exception {
+		page.WaitForElement(10, "profileNav");
 		page.ClickElement("profileNav");
 		page.ClickText("Log out");
 		page.Assert("title", "Meet the new Meetup | Meetup");

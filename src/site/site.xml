@@ -27,7 +27,7 @@
         <topBarIcon>
           <name>Project Info</name>
           <alt>Project Info</alt>
-          <src>/resources/images/meetup.PNG</src>
+          <src>/images/meetup.PNG</src>
           <href>/index.html</href>
         </topBarIcon>
         <sideBarEnabled>false</sideBarEnabled>

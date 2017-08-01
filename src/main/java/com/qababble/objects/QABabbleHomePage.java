@@ -1,5 +1,7 @@
 package com.qababble.objects;
 
+import org.openqa.selenium.SessionNotCreatedException;
+
 import com.codesp.framework.*;
 
 import ru.yandex.qatools.allure.annotations.Attachment;
@@ -18,8 +20,10 @@ public class QABabbleHomePage {
 		env.setParam("baseUrl", qababble);
 		env.setParam("version", "60");
 		env.setParam("platform", "Windows 7");
+		env.setParam("build", "");
+		
 		page.RemoteLauncher(env.getParam("node"), env.getParam("browser"), env.getParam("version"), env.getParam("platform"), env.getParam("baseUrl"));
-		//page.LaunchBrowserWithURL("chrome", qababble);
+		//page.LaunchBrowserWithURL("ie", qababble);
 	}
 	
 	@Step
@@ -65,6 +69,13 @@ public class QABabbleHomePage {
 		page.Assert("element", "profileNav");
 		page.Assert("element", "findNavBar");
 		assertTest(type+".txt", "findNavBar");
+	}
+	
+	@Step
+	public void quit() throws Exception {
+		try {
+		page.Quit();
+		} catch (SessionNotCreatedException e) {}
 	}
 	
     @Attachment

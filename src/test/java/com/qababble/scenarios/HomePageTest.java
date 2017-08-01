@@ -1,16 +1,19 @@
 package com.qababble.scenarios;
 
 import java.lang.reflect.Method;
-
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import com.codesp.framework.Selenium;
+import com.codesp.framework.*;
+import com.codesp.reporting.*;
 import com.qababble.objects.QABabbleHomePage;
 
 public class HomePageTest {
 	Selenium page = new Selenium();
 	QABabbleHomePage qababble = new QABabbleHomePage();
+	EnvironmentProperties env = new EnvironmentProperties();
+	Reporter report = new Reporter();
+	Timer timer = new Timer();
 	
 	String testName;
 	
@@ -25,30 +28,45 @@ public class HomePageTest {
 		qababble.setup();
 	}
 	
+	public void stopTimer() throws Exception {
+		long value = timer.stopAndGetTime();
+		report.connectToInflux();
+		report.addTag("TestName", testName);
+		report.addTag("TestStatus", "PASS");
+		report.addTag("Build", env.getParam("build"));
+		report.writeToInfluxDB("QABabble", "TDemo", value);
+	}
+	
 	@Test
 	public void create_meetup() throws Exception {
 		page.WaitForElement(30, "@Create a Meetup");
+		timer.startTimer(testName);
 		page.ClickText("Create a Meetup");
 		page.WaitForPageToLoad(10);
 		page.Assert("title", "Start a Meetup Today!");
-		qababble.assertTest(testName, "meetupBody");		
+		qababble.assertTest(testName, "meetupBody");
+		stopTimer();
 	}
 	
 	@Test
 	public void get_app() throws Exception {
 		page.WaitForElement(30, "@Get the app");
+		timer.startTimer(testName);
 		page.ClickText("Get the app");
 		page.WaitForPageToLoad(10);
 		page.Assert("title", "Meet the new Meetup | Meetup");
-		qababble.assertTest(testName, "meetupBody");	
+		qababble.assertTest(testName, "meetupBody");
+		stopTimer();
 	}
 	
 	@Test
 	public void sign_up() throws Exception {
 		page.WaitForElement(30, "@Sign up");
+		timer.startTimer(testName);
 		page.ClickText("Sign up");
 		page.WaitForElement(10, "@class=view view--modalSnap");
-		qababble.assertTest(testName, "@class=view view--modalSnap");	
+		qababble.assertTest(testName, "@class=view view--modalSnap");
+		stopTimer();
 	}
 	
 	@AfterMethod
@@ -58,7 +76,7 @@ public class HomePageTest {
 	    	page.takeScreenshot(result.getName()+"_FAILED_"+page.utils().getCurrentDateTime("HH_mm_ss"));
 	    	qababble.screenCapture();
 	    } try {
-	    page.URL(qababble.qababble);
+	    	page.URL(qababble.qababble);
 	    } catch (AssertionError e) {
 	    	
 	    }
@@ -66,6 +84,6 @@ public class HomePageTest {
 	
 	@AfterClass
 	public void quit() throws Exception {
-		page.Quit();
+		qababble.quit();
 	}
 }

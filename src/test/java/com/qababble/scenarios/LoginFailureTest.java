@@ -57,7 +57,7 @@ public class LoginFailureTest {
 	    	System.out.println(System.lineSeparator()+result.getName()+" -- FAILED!");
 	    	page.takeScreenshot(result.getName()+"_FAILED_"+page.utils().getCurrentDateTime("HH_mm_ss"));
 	    	qababble.screenCapture();
-	    	page.Quit();
+	    	//page.Quit();
 	    } 
 	}
 	

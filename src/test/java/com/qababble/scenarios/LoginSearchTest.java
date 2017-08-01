@@ -34,7 +34,7 @@ public class LoginSearchTest {
 		page.WaitForElement(10, "mainKeywords");
 		page.Input("mainKeywords", "planit");
 		page.keyPressReturn();
-		page.WaitForElement(10,  "//*[@id='__pagerInitiator' and @style='top: 630px;']");
+		page.WaitForElement(30,  "//*[@id='__pagerInitiator' and contains(@style, 'top: 6')]");
 		page.WaitForElement("//*[@class='event-listing-container']//span[text()='QA Babble 5 - Test Automation in Focus - Sponsored by Planit']");
 		qababble.assertTest(testName, eventContainer);
 	}
@@ -53,7 +53,6 @@ public class LoginSearchTest {
 	    	System.out.println(System.lineSeparator()+result.getName()+" -- FAILED!");
 	    	page.takeScreenshot(result.getName()+"_FAILED_"+page.utils().getCurrentDateTime("HH_mm_ss"));
 	    	qababble.screenCapture();
-	    	page.Quit();
 	    } 
 	}
 	

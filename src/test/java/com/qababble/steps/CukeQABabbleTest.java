@@ -1,6 +1,7 @@
 package com.qababble.steps;
 
 import com.codesp.framework.*;
+import com.codesp.reporting.*;
 import com.qababble.objects.QABabbleHomePage;
 
 import cucumber.api.java.After;
@@ -12,7 +13,19 @@ import cucumber.api.java.en.When;
 public class CukeQABabbleTest {
 
 	QABabbleHomePage qababble = new QABabbleHomePage();
+	EnvironmentProperties env = new EnvironmentProperties();
 	Selenium page = new Selenium();
+	Reporter report = new Reporter();
+	Timer timer = new Timer();
+	
+	public void stopTimer(String testName) throws Exception {
+		long value = timer.stopAndGetTime();
+		report.connectToInflux();
+		report.addTag("TestName", testName);
+		report.addTag("TestStatus", "PASS");
+		report.addTag("Build", env.getParam("buildID"));
+		report.writeToInfluxDB("QABabble", "TDemo", value);
+	}
 	
 	@Given("^Meetup page exists$")
 	public void meetup_page_exists() throws Exception {
@@ -38,7 +51,9 @@ public class CukeQABabbleTest {
 	
 	@Then("^I should be navigated to page with element (.+) and assertion (.+)$")
 	public void navigate_page_and_assert(String element, String filename) throws Exception {
+		timer.startTimer(filename);
 		qababble.assertTest(filename, element);
+		stopTimer(filename);
 	}
 	
 	@When("^I click on login button and input credentials email (.+) and pass (.+)$")
@@ -66,17 +81,21 @@ public class CukeQABabbleTest {
 	
 	@Then("^I should get an error (.+)$")
 	public void assert_login_failure(String assertFile) throws Exception {
+		timer.startTimer(assertFile);
 		qababble.assert_login_failure(assertFile);
+		stopTimer(assertFile);
 	}
 	
 	@Then("^I should be taken to homepage (.+)$")
 	public void assert_login_pass(String assertFile) throws Exception {
+		timer.startTimer(assertFile);
 		qababble.assert_login_pass(assertFile);
+		stopTimer(assertFile);		
 	}
 	
 	@After
 	public void quit() throws Exception {
-		page.Quit();
+		qababble.quit();
 	}
 	
 }

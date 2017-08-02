@@ -35,8 +35,8 @@ public class QABabbleHomePage {
 	@Step
 	public void AssertFail(String file) throws Exception {
     	page.utils().createTempFile("./log/"+page.utils().getCurrentDateTime("dd_MM_yyyy")+"/"+page.getEnv()+"/temp/"+file, "./log/"+page.utils().getCurrentDateTime("dd_MM_yyyy")+"/"+page.getEnv()+"/"+file);
-		//page.utils().compareFilesAndFailOnDifference("./src/test/resources/QABabble/Assertions/"+page.getEnv()+"/"+file, "./log/"+page.utils().getCurrentDateTime("dd_MM_yyyy")+"/"+page.getEnv()+"/"+file);
-		page.utils().compareFiles("./src/test/resources/QABabble/Assertions/"+page.getEnv()+"/"+file, "./log/"+page.utils().getCurrentDateTime("dd_MM_yyyy")+"/"+page.getEnv()+"/"+file);
+		page.utils().compareFilesAndFailOnDifference("./src/test/resources/QABabble/Assertions/"+page.getEnv()+"/"+file, "./log/"+page.utils().getCurrentDateTime("dd_MM_yyyy")+"/"+page.getEnv()+"/"+file);
+		//page.utils().compareFiles("./src/test/resources/QABabble/Assertions/"+page.getEnv()+"/"+file, "./log/"+page.utils().getCurrentDateTime("dd_MM_yyyy")+"/"+page.getEnv()+"/"+file);
 	}
 	
 	@Step

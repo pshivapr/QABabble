@@ -36,7 +36,7 @@ public class LoginFailureTest {
 		report.connectToInflux();
 		report.addTag("TestName", testName);
 		report.addTag("TestStatus", "PASS");
-		report.addTag("Build", env.getParam("build"));
+		report.addTag("Build", env.getParam("buildID"));
 		report.writeToInfluxDB("QABabble", "TDemo", value);
 	}
 	
